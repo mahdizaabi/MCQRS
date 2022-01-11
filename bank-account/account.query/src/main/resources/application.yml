@@ -1,0 +1,33 @@
+server:
+  port: 5001
+
+spring:
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:mysql://localhost:3306/bankAccount?createDatabaseIfNotExist=true
+    username: root
+    password: root
+  kafka:
+    listener:
+      #manually commit the offset on the topic as soon we consume a message from kafka
+      ack-mode: manual_immediate
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id: bankaccConsumer
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        json:
+          trusted:
+            packages: '*'
+
+
+
+
+
