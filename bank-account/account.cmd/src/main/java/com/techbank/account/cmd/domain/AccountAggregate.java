@@ -26,7 +26,7 @@ public class AccountAggregate extends AggregateRoot {
                 .build());
     }
 
-    //method is invoke it through reflexion; (reload the aggregator with event replaying)
+    //method is invokeed through reflexion; (reload the aggregator with event data)
     public void apply(AccountOpenedEvent accountOpenedEvent) {
         this.id = accountOpenedEvent.getIdentidier();
         this.active = true;
