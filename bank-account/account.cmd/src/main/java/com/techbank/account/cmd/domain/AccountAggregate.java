@@ -16,6 +16,10 @@ public class AccountAggregate extends AggregateRoot {
     private Boolean active;
     private double balance;
 
+    public double getBalance() {
+        return this.balance;
+    }
+
     public AccountAggregate(OpenAccountCommand openAccountCommand) {
         raiseEvent(AccountOpenedEvent.builder()
                 .accountHolder(openAccountCommand.getAccountHolder())
@@ -70,7 +74,7 @@ public class AccountAggregate extends AggregateRoot {
         this.balance = fundsWithDrawEvent.getAmount();
     }
 
-    //Command handler ::::$$$ check it first
+    //mthod Command handler ::::$$$ check it first
     public void closeAccount() {
         raiseEvent(AccountClosedEvent.builder().identidier(this.id).build());
     }
