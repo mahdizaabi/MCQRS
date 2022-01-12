@@ -15,7 +15,7 @@ public class AccountEventSourcingHandler implements EventSourcingHandler<Account
     @Autowired
     private EventStore eventStore;
 
-    //db->repo->eventstore->eventsourcinghandler0
+
     @Override
     public void save(AggregateRoot aggregate) {
         eventStore.saveEvents(aggregate.getId(), aggregate.getUncommitedChange(), aggregate.getVersion());
