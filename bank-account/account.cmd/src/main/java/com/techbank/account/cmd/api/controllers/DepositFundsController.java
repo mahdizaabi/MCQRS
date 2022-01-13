@@ -36,7 +36,7 @@ public class DepositFundsController {
             logger.error(exc.toString());
             return ResponseEntity.badRequest().body(new OpenAccountResponse(exc.toString()));
         } catch (Exception exc) {
-            var safeMessageError = "Error while processin request to open a new bank account for id: " + id;
+            var safeMessageError = "Error while deposit fund request to open a new bank account for id: " + id;
             logger.error(safeMessageError);
             return new ResponseEntity<>(new BaseResponse(safeMessageError), HttpStatus.INTERNAL_SERVER_ERROR);
 
